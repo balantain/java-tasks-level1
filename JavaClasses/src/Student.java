@@ -1,4 +1,4 @@
-package JavaClassesMainTaskStudent;
+package src;
 
 public class Student {
     private int id;
