@@ -1,46 +1,47 @@
-package src;
+package com.epam.model;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.*;
 
 public class University {
-    ArrayList<Student> students = new ArrayList<>();
+    List<Student> students = new ArrayList<>();
 
     public void addStudentIntoUniversity (Student student){
         students.add(student);
     }
 
     public void getStudentsOfFaculty(String faculty){
-        System.out.println("Список студентов факультета \"" + faculty + "\":" );
+        if(faculty == null){
+            return;
+        }
+        printFacultyStudentList(faculty);
+    }
+
+    public void getListOfStudentsOfEachFaculty(){
+        Set<String> faculties = new HashSet<>();
         for (Student student : students){
-            if (student.getFaculty().equals(faculty)){
+            faculties.add(student.getFaculty());
+        }
+        for (String faculty : faculties){
+            printFacultyStudentList(faculty);
+        }
+    }
+
+    private void printFacultyStudentList(String faculty) {
+        System.out.println("List of students, studied in \"" + faculty + "\":");
+        for (Student student : students) {
+            if (faculty.equals(student.getFaculty())) {
                 System.out.println(student.getSimpleName());
             }
         }
     }
 
-    public void getListOfStudentsOfEachFaculty(){
-        HashSet<String> faculties = new HashSet<>();
-        for (Student student : students){
-            faculties.add(student.getFaculty());
-        }
-        for (String faculty : faculties){
-            System.out.println("Список студентов факультета \"" + faculty + "\":");
-            for (Student student : students){
-                if (student.getFaculty().equals(faculty)){
-                    System.out.println(student.getSimpleName());
-                }
-            }
-        }
-    }
-
     public void getListOfStudentsOfEachCourse() {
-        HashSet<Integer> courses = new HashSet<>();
+        Set<Integer> courses = new HashSet<>();
         for (Student student : students){
             courses.add(student.getCourse());
         }
         for (Integer course : courses){
-            System.out.println("Список студентов " + course + " курса:");
+            System.out.println("List of students of " + course + " course:");
             for (Student student : students){
                 if (student.getCourse() == course){
                     System.out.println(student.getSimpleName());
@@ -50,18 +51,21 @@ public class University {
     }
 
     public void getListOfStudentsWithYearOfBirthAfter (int year){
-        System.out.println("Список студентов родившихся после " + year + " года:");
+        System.out.println("List of students, after " + year + " year:");
+        Calendar calendar = new GregorianCalendar();
+        calendar.set(Calendar.YEAR, year);
+
         for (Student student : students){
-            if (student.getYearOfBirth() > year){
+            if (student.getDateOfBirth().getTime() > calendar.getTimeInMillis()){
                 System.out.println(student.getSimpleName());
             }
         }
     }
 
     public void getStudentsOfGroup (String group){
-        System.out.println("Список студентов группы " + group + ":");
+        System.out.println("List of students by " + group + ":");
         for (Student student : students){
-            if (student.getGroup().equals(group)){
+            if (group.equals(student.getGroup())){
                 System.out.println(student.getSimpleName());
             }
         }
