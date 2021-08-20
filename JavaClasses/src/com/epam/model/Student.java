@@ -1,13 +1,15 @@
-package src;
+package com.epam.model;
+
+import java.util.Date;
 
 public class Student {
     private int id;
     private String lastName;
     private String firstName;
     private String middleName;
-    private int dayOfBirth;
-    private String monthOfBirth;
-    private int yearOfBirth;
+
+    private Date dateOfBirth;
+
     private String address;
     private String phoneNumber;
     private String faculty;
@@ -46,28 +48,12 @@ public class Student {
         this.middleName = middleName;
     }
 
-    public int getDayOfBirth() {
-        return dayOfBirth;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDayOfBirth(int dayOfBirth) {
-        this.dayOfBirth = dayOfBirth;
-    }
-
-    public String getMonthOfBirth() {
-        return monthOfBirth;
-    }
-
-    public void setMonthOfBirth(String monthOfBirth) {
-        this.monthOfBirth = monthOfBirth;
-    }
-
-    public int getYearOfBirth() {
-        return yearOfBirth;
-    }
-
-    public void setYearOfBirth(int yearOfBirth) {
-        this.yearOfBirth = yearOfBirth;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getAddress() {
@@ -113,14 +99,12 @@ public class Student {
     public Student() {
     }
 
-    public Student(int id, String lastName, String firstName, String middleName, int dayOfBirth, String monthOfBirth, int yearOfBirth, String address, String phoneNumber, String faculty, int course, String group) {
+    public Student(int id, String lastName, String firstName, String middleName, Date dateOfBirth, String address, String phoneNumber, String faculty, int course, String group) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
         this.middleName = middleName;
-        this.dayOfBirth = dayOfBirth;
-        this.monthOfBirth = monthOfBirth;
-        this.yearOfBirth = yearOfBirth;
+        this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.faculty = faculty;
@@ -135,9 +119,7 @@ public class Student {
                 ", lastName='" + lastName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", middleName='" + middleName + '\'' +
-                ", dayOfBirth=" + dayOfBirth +
-                ", monthOfBirth='" + monthOfBirth + '\'' +
-                ", yearOfBirth=" + yearOfBirth +
+                ", dayOfBirth=" + dateOfBirth.toString() +
                 ", address='" + address + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", faculty='" + faculty + '\'' +
@@ -147,7 +129,7 @@ public class Student {
     }
 
     public String getSimpleName(){
-        return lastName + " " + firstName.charAt(0) + ". " + middleName.charAt(0) + ". "+ yearOfBirth + " г.р.";
+        return lastName + " " + firstName.charAt(0) + ". " + middleName.charAt(0) + ". "+ dateOfBirth.toString();
     }
 
     public static class StudentBuilder{
@@ -177,22 +159,12 @@ public class Student {
             return this;
         }
 
-        public StudentBuilder withDayOfBirth (int dayOfBirth){
-            newStudent.dayOfBirth = dayOfBirth;
+        public StudentBuilder withDateOfBirth (Date dateOfBirth){
+            newStudent.dateOfBirth = dateOfBirth;
             return this;
         }
 
-        public StudentBuilder withMonthOfBirth (String monthOfBirth){
-            newStudent.monthOfBirth = monthOfBirth;
-            return this;
-        }
-
-        public StudentBuilder withYearOfBirth (int yearOfBirth){
-            newStudent.yearOfBirth = yearOfBirth;
-            return this;
-        }
-
-        public StudentBuilder withAddress (String address){
+       public StudentBuilder withAddress (String address){
             newStudent.address = address;
             return this;
         }
