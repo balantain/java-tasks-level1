@@ -1,16 +1,19 @@
-package src;
+package com.epam.model;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class UniversityRunner {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
+        DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
         University university = new University();
         university.addStudentIntoUniversity(new Student.StudentBuilder()
                 .withId(1)
                 .withLastName("Иванов")
                 .withFirstName("Иван")
                 .withMiddleName("Иванович")
-                .withDayOfBirth(12)
-                .withMonthOfBirth("апрель")
-                .withYearOfBirth(2000)
+                .withDateOfBirth(df.parse("26.05.1986"))
                 .withAddress("ул.Сухаревская, 16-32")
                 .withPhoneNumber("+375 29 111-11-11")
                 .withFaculty("КП")
@@ -22,9 +25,7 @@ public class UniversityRunner {
                 .withLastName("Петров")
                 .withFirstName("Петр")
                 .withMiddleName("Петрович")
-                .withDayOfBirth(17)
-                .withMonthOfBirth("февраль")
-                .withYearOfBirth(2001)
+                .withDateOfBirth(df.parse("29.05.1987"))
                 .withAddress("ул.Притыцкого, 15-25")
                 .withPhoneNumber("+375 29 222-22-22")
                 .withFaculty("КП")
@@ -36,18 +37,16 @@ public class UniversityRunner {
                 .withLastName("Печкин")
                 .withFirstName("Дмитрий")
                 .withMiddleName("Геннадьевич")
-                .withDayOfBirth(17)
-                .withMonthOfBirth("сентябрь")
-                .withYearOfBirth(2000)
+                .withDateOfBirth(df.parse("26.04.1987"))
                 .withAddress("ул.Карского, 1-111")
                 .withPhoneNumber("+375 29 333-33-33")
                 .withFaculty("ММФ")
                 .withCourse(3)
                 .withGroup("ММФ18")
                 .build());
-        university.addStudentIntoUniversity(new Student(4, "Сидоров", "Евгений", "Александрович", 22, "апрель", 1999, "ул.Уманская, 7-24", "+375 29 212-14-62", "ММФ", 4, "ММФ17"));
-        university.addStudentIntoUniversity(new Student(5, "Лисовский", "Максим", "Анатольевич", 1, "ноябрь", 1999, "ул.Тимошенко, 10-16", "+375 29 715-15-21", "КСС", 4, "КСС17"));
-        university.addStudentIntoUniversity(new Student(6, "Глинник", "Григорий", "Тимофеевич", 16, "март", 1999, "ул.Федорова, 6-36", "+375 29 999-99-99", "ММФ", 4, "ММФ17"));
+        university.addStudentIntoUniversity(new Student(4, "Сидоров", "Евгений", "Александрович", df.parse("26.05.1986"), "ул.Уманская, 7-24", "+375 29 212-14-62", "ММФ", 4, "ММФ17"));
+        university.addStudentIntoUniversity(new Student(5, "Лисовский", "Максим", "Анатольевич", df.parse("26.05.1986"), "ул.Тимошенко, 10-16", "+375 29 715-15-21", "КСС", 4, "КСС17"));
+        university.addStudentIntoUniversity(new Student(6, "Глинник", "Григорий", "Тимофеевич", df.parse("26.05.1986"), "ул.Федорова, 6-36", "+375 29 999-99-99", "ММФ", 4, "ММФ17"));
 
         university.getStudentsOfFaculty("КП");
         System.out.println();
@@ -57,6 +56,6 @@ public class UniversityRunner {
         System.out.println();
         university.getListOfStudentsOfEachCourse();
         System.out.println();
-        university.getListOfStudentsWithYearOfBirthAfter(2000);
+        university.getListOfStudentsWithYearOfBirthAfter(1986);
     }
 }

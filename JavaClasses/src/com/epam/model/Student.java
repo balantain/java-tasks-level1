@@ -1,5 +1,7 @@
 package com.epam.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Student {
@@ -15,6 +17,8 @@ public class Student {
     private String faculty;
     private int course;
     private String group;
+
+    private static DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
     public int getId() {
         return id;
@@ -119,7 +123,7 @@ public class Student {
                 ", lastName='" + lastName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", middleName='" + middleName + '\'' +
-                ", dayOfBirth=" + dateOfBirth.toString() +
+                ", dayOfBirth=" + dateFormat.format(dateOfBirth) +
                 ", address='" + address + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", faculty='" + faculty + '\'' +
@@ -129,11 +133,11 @@ public class Student {
     }
 
     public String getSimpleName(){
-        return lastName + " " + firstName.charAt(0) + ". " + middleName.charAt(0) + ". "+ dateOfBirth.toString();
+        return lastName + " " + firstName.charAt(0) + ". " + middleName.charAt(0) + ". "+ dateFormat.format(dateOfBirth);
     }
 
     public static class StudentBuilder{
-        private Student newStudent;
+        private final Student newStudent;
 
         public StudentBuilder (){
             newStudent = new Student();
