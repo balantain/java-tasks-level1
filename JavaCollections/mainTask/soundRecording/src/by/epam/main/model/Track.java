@@ -1,7 +1,6 @@
-package by.epam.main.objectClasses;
+package by.epam.main.model;
 
-import by.epam.main.actionClasses.PlaylistCreator;
-import by.epam.main.enums.Genres;
+import by.epam.main.controllers.PlaylistCreatorController;
 
 public class Track {
     private String region;
@@ -66,6 +65,6 @@ public class Track {
     public String toString() {
         return artistName + " - " + "\"" + trackName + "\"" + " (" +
                 "genre: " + genre + ", " + "length: " +
-                PlaylistCreator.getTrackLengthAsString(trackLength) + ")";
+                PlaylistCreatorController.getTrackLengthAsString(trackLength) + ")";
     }
 }

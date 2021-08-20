@@ -1,4 +1,4 @@
-package by.epam.main.menuControl;
+package by.epam.main.menu;
 
 import java.util.Locale;
 import java.util.ResourceBundle;

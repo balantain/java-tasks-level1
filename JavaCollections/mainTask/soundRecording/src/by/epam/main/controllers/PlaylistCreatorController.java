@@ -1,20 +1,19 @@
-package by.epam.main.actionClasses;
+package by.epam.main.controllers;
 
-import by.epam.main.enums.Genres;
-import by.epam.main.menuControl.Controller;
-import by.epam.main.menuControl.Menu;
-import by.epam.main.objectClasses.Track;
+import by.epam.main.model.Genres;
+import by.epam.main.menu.Menu;
+import by.epam.main.model.Track;
 
 import java.util.*;
 
-public class PlaylistCreator {
+public class PlaylistCreatorController {
 
     final static Integer DISK_LIMIT = 3600;
     static int usedDiskLength;
     static Integer freeTrackSetLength = DISK_LIMIT;
 
     public static ArrayList<Track> createPersonalPlaylist(Scanner scanner) {
-        ArrayList<Track> songBase = new ArrayList<>(Controller.getSongBase());
+        ArrayList<Track> songBase = new ArrayList<>(UserActionController.getSongBase());
         System.out.println(Menu.DISK_MAXIMUM_CAPACITY_MESSAGE + getTrackLengthAsString(DISK_LIMIT));
         ArrayList<Track> playlist = new ArrayList<>();
         playlist.add(addFirstTrack(scanner, songBase));
@@ -39,7 +38,7 @@ public class PlaylistCreator {
 
     public static Track addFirstTrack (Scanner scanner, ArrayList<Track> songBase) {
         Track track = new Track();
-        switch (Controller.getUserInputCorrectValue(scanner, Menu.ADD_FIRST_TRACK_MENU, 1, 4)) {
+        switch (UserActionController.getUserInputCorrectValue(scanner, Menu.ADD_FIRST_TRACK_MENU, 1, 4)) {
             case 1:
                 track = createPersonalTrack(scanner);
                 break;
@@ -60,7 +59,7 @@ public class PlaylistCreator {
 
     public static Track addMoreTracks(Scanner scanner, ArrayList<Track> songBase){
         Track track = new Track();
-        switch (Controller.getUserInputCorrectValue(scanner, Menu.ADD_MORE_TRACK_MENU, 1, 5)){
+        switch (UserActionController.getUserInputCorrectValue(scanner, Menu.ADD_MORE_TRACK_MENU, 1, 5)){
             case 1: track = createPersonalTrack(scanner);
                 usedDiskLength += track.getTrackLength();
                 freeTrackSetLength = DISK_LIMIT - usedDiskLength;
@@ -101,7 +100,7 @@ public class PlaylistCreator {
         for (String artist : artists){
             artistList.append("\n").append(artists.indexOf(artist) + 1).append(". ").append(artist);
         }
-        String artistName = artists.get(Controller.getUserInputCorrectValue(scanner, artistList.toString(), 1, artistsSet.size()) - 1);
+        String artistName = artists.get(UserActionController.getUserInputCorrectValue(scanner, artistList.toString(), 1, artistsSet.size()) - 1);
         ArrayList<Track> songList = new ArrayList<>();
         for (Track track : songBase){
             if (track.getArtistName().equals(artistName)){
@@ -112,13 +111,13 @@ public class PlaylistCreator {
         for (Track track : songList){
             trackList.append("\n").append(songList.indexOf(track) + 1).append(". ").append(track);
         }
-        return songList.get(Controller.getUserInputCorrectValue(scanner, trackList.toString(), 1, songList.size()) - 1);
+        return songList.get(UserActionController.getUserInputCorrectValue(scanner, trackList.toString(), 1, songList.size()) - 1);
     }
 
     public static Track searchTrackByGenre (Scanner scanner, ArrayList<Track> songBase){
         ArrayList<Track> artistsListOfGenre = new ArrayList<>();
         String genre = "";
-        switch (Controller.getUserInputCorrectValue(scanner, Menu.USER_ADD_GENRE_MENU, 1, 6)){
+        switch (UserActionController.getUserInputCorrectValue(scanner, Menu.USER_ADD_GENRE_MENU, 1, 6)){
             case 1: genre = "ROCK"; break;
             case 2: genre = "POP"; break;
             case 3: genre = "RAP"; break;
@@ -204,7 +203,7 @@ public class PlaylistCreator {
         track.setArtistName(scanner.nextLine().trim());
         System.out.println(Menu.USER_ADD_TRACK_NAME);
         track.setTrackName(scanner.nextLine().trim());
-        switch (Controller.getUserInputCorrectValue(scanner, Menu.USER_ADD_GENRE_MENU, 1, 6)){
+        switch (UserActionController.getUserInputCorrectValue(scanner, Menu.USER_ADD_GENRE_MENU, 1, 6)){
             case 1: track.setGenre(Genres.ROCK);
                 break;
             case 2: track.setGenre(Genres.POP);
@@ -225,7 +224,7 @@ public class PlaylistCreator {
         while (!isInputCorrect) {
             trackLength = getCorrectTrackLength(scanner);
             if (trackLength > freeTrackSetLength) {
-                switch (Controller.getUserInputCorrectValue(scanner, Menu.DISK_LIMIT_EXCEPTION_MENU, 1, 3)) {
+                switch (UserActionController.getUserInputCorrectValue(scanner, Menu.DISK_LIMIT_EXCEPTION_MENU, 1, 3)) {
                     case 1:
                         trackLength = freeTrackSetLength;
                         isInputCorrect = true;
@@ -251,9 +250,9 @@ public class PlaylistCreator {
     }
 
     public static ArrayList<Track> createPlaylistByMood (Scanner scanner){
-        ArrayList<Track> songBase = new ArrayList<>(Controller.getSongBase());
+        ArrayList<Track> songBase = new ArrayList<>(UserActionController.getSongBase());
         String mood = "";
-        switch (Controller.getUserInputCorrectValue(scanner, Menu.MOOD_PLAYLIST_CREATING_MENU, 1, 3)){
+        switch (UserActionController.getUserInputCorrectValue(scanner, Menu.MOOD_PLAYLIST_CREATING_MENU, 1, 3)){
             case 1: mood = "calm"; break;
             case 2: mood = "energetic"; break;
             case 3 : mood = "aggressive"; break;

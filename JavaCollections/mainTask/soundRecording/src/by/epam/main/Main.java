@@ -1,11 +1,11 @@
 package by.epam.main;
 
-import by.epam.main.menuControl.Controller;
+import by.epam.main.controllers.UserActionController;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Controller.runProgramme(new Scanner(System.in));
+        UserActionController.runProgramme(new Scanner(System.in));
     }
 }

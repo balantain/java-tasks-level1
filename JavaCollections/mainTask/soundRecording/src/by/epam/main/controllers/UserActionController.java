@@ -1,21 +1,21 @@
-package by.epam.main.menuControl;
+package by.epam.main.controllers;
 
-import by.epam.main.actionClasses.PlaylistCreator;
-import by.epam.main.enums.Genres;
-import by.epam.main.objectClasses.Track;
+import by.epam.main.menu.Menu;
+import by.epam.main.model.Genres;
+import by.epam.main.model.Track;
 
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Controller {
+public class UserActionController {
 
     public static void runProgramme(Scanner scanner){
         switch (getUserInputCorrectValue(scanner, Menu.MAIN_MENU, 1, 3)) {
             case 1:
-                burnDisk(scanner, PlaylistCreator.createPersonalPlaylist(scanner));
+                burnDisk(scanner, PlaylistCreatorController.createPersonalPlaylist(scanner));
                 break;
-            case 2: burnDisk(scanner, PlaylistCreator.createPlaylistByMood(scanner));
+            case 2: burnDisk(scanner, PlaylistCreatorController.createPlaylistByMood(scanner));
                 break;
             case 3:
                 break;
@@ -29,14 +29,14 @@ public class Controller {
         for (Track track : playlist) {
             playlistLength += track.getTrackLength();
         }
-        switch (Controller.getUserInputCorrectValue(scanner, Menu.BURN_DISK_MENU, 1, 2)) {
+        switch (UserActionController.getUserInputCorrectValue(scanner, Menu.BURN_DISK_MENU, 1, 2)) {
             case 1:
-                PlaylistCreator.sortListByGenre(playlist).forEach(System.out::println);
-                System.out.println(Menu.DISK_LENGTH_MESSAGE + " " + PlaylistCreator.getTrackLengthAsString(playlistLength));
+                PlaylistCreatorController.sortListByGenre(playlist).forEach(System.out::println);
+                System.out.println(Menu.DISK_LENGTH_MESSAGE + " " + PlaylistCreatorController.getTrackLengthAsString(playlistLength));
                 break;
             case 2:
                 playlist.forEach(System.out::println);
-                System.out.println(Menu.DISK_LENGTH_MESSAGE + " " + PlaylistCreator.getTrackLengthAsString(playlistLength));
+                System.out.println(Menu.DISK_LENGTH_MESSAGE + " " + PlaylistCreatorController.getTrackLengthAsString(playlistLength));
                 break;
         }
     }
