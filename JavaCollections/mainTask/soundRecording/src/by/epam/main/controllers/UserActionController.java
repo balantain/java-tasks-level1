@@ -6,6 +6,7 @@ import by.epam.main.model.Track;
 
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserActionController {
@@ -24,7 +25,7 @@ public class UserActionController {
         System.out.println(Menu.PROGRAMME_EXIT_MESSAGE);
     }
 
-    public static void burnDisk(Scanner scanner, ArrayList<Track> playlist) {
+    public static void burnDisk(Scanner scanner, List<Track> playlist) {
         int playlistLength = 0;
         for (Track track : playlist) {
             playlistLength += track.getTrackLength();
