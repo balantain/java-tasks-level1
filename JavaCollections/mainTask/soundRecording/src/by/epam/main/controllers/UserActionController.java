@@ -78,26 +78,8 @@ public class UserActionController {
                 int length = minutes * 60 + seconds;
                 track.setTrackLength(length);
                 String genre = songInfo[3].trim();
-                switch (genre) {
-                    case "ROCK":
-                        track.setGenre(Genres.ROCK);
-                        break;
-                    case "POP":
-                        track.setGenre(Genres.POP);
-                        break;
-                    case "RAP":
-                        track.setGenre(Genres.RAP);
-                        break;
-                    case "ELECTRONIC":
-                        track.setGenre(Genres.ELECTRONIC);
-                        break;
-                    case "DANCE":
-                        track.setGenre(Genres.DANCE);
-                        break;
-                    default:
-                        track.setGenre(Genres.OTHER);
-                        break;
-                }
+                Genres genres = Genres.valueOf(genre);
+                track.setGenre(genres);
                 track.setMood(songInfo[4].trim());
                 songBase.add(track);
             }
