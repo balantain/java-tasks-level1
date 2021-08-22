@@ -1,4 +1,4 @@
-package mainTask;
+package main_task;
 
 import java.util.Scanner;
 
@@ -17,7 +17,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String name = sc.nextLine();
         System.out.println("Hello, " + name + "! We're glad to see you.");
-        sc.close();
     }
 
     //----------------2.Отобразить в окне консоли аргументы командной строки в обратном порядке-------------------------
@@ -39,7 +38,7 @@ public class Main {
             }
         }
         System.out.println(argsInBackOrder);
-        sc.close();
+        
     }
 
     //---------3.Вывести заданное количество случайных чисел с переходом и без перехода на новую строку-----------------
@@ -54,7 +53,7 @@ public class Main {
         for (int i = 0; i < n; i++){
             System.out.println(Math.random()*10);
         }
-        sc.close();
+        
     }
 
     //4.Вывести целые числа как аргументы командной строки. Подсчитать их сумму и произведение. Вывести результат на консоль
@@ -72,7 +71,7 @@ public class Main {
         }
         System.out.println("The sum is: " + sum);
         System.out.println("The prod is: " + prod);
-        sc.close();
+        
     }
 
     //5.Ввести число от 1 до 12. Вывести на консоль название месяца, соответствующего данному числу. Осуществить проверку корректности ввода чисел.
@@ -92,38 +91,39 @@ public class Main {
                 System.out.println("Wrong input. Number is not in diapason.");
                 System.out.println("Please, enter an integer number from 1 to 12:");
                 isInputCorrect = false;
+                continue;
             }
-            else{
-                isInputCorrect = true;
-                switch (userInput){
-                    case 1:
-                        System.out.println("January"); break;
-                    case 2:
-                        System.out.println("February"); break;
-                    case 3:
-                        System.out.println("March"); break;
-                    case 4:
-                        System.out.println("April"); break;
-                    case 5:
-                        System.out.println("May"); break;
-                    case 6:
-                        System.out.println("June"); break;
-                    case 7:
-                        System.out.println("July"); break;
-                    case 8:
-                        System.out.println("August"); break;
-                    case 9:
-                        System.out.println("September"); break;
-                    case 10:
-                        System.out.println("October"); break;
-                    case 11:
-                        System.out.println("November"); break;
-                    case 12:
-                        System.out.println("December"); break;
-                    default: throw new IllegalArgumentException("DEFAULT! Wrong input!");
-                }
+
+            isInputCorrect = true;
+            switch (userInput){
+                case 1:
+                    System.out.println("January"); break;
+                case 2:
+                    System.out.println("February"); break;
+                case 3:
+                    System.out.println("March"); break;
+                case 4:
+                    System.out.println("April"); break;
+                case 5:
+                    System.out.println("May"); break;
+                case 6:
+                    System.out.println("June"); break;
+                case 7:
+                    System.out.println("July"); break;
+                case 8:
+                    System.out.println("August"); break;
+                case 9:
+                    System.out.println("September"); break;
+                case 10:
+                    System.out.println("October"); break;
+                case 11:
+                    System.out.println("November"); break;
+                case 12:
+                    System.out.println("December"); break;
+                default: throw new IllegalArgumentException("DEFAULT! Wrong input!");
             }
-            sc.close();
+
+            
         }
     }
 }

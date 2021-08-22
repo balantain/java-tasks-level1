@@ -1,4 +1,4 @@
-package optionalTask2;
+package optional_task2;
 
 //Ввести с консоли n - размерность матрицы a [n] [n]. Задать значения элементов матрицы в интервале значений от -M до M с помощью генератора случайных чисел (класс Random).
 //        1.     Упорядочить строки (столбцы) матрицы в порядке возрастания значений элементов k-го столбца (строки).
@@ -42,10 +42,10 @@ public class Main {
         }
         System.out.println();
     }
-    task1(matrix);             // 1.Задание
-    task2(matrix);             // 2.Задание
-    task2modernized(matrix);   // 2.Задание усложненное
-    task3(matrix);             // 3.Задание
+//    task1(matrix);             // 1.Задание
+//    task2(matrix);             // 2.Задание
+//    task2modernized(matrix);   // 2.Задание усложненное
+//    task3(matrix);             // 3.Задание
     task4(matrix);             // 4.Задание
 }
 

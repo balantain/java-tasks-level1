@@ -16,7 +16,6 @@ public class Main {
     }
     public static ArrayList<File> getAllFiles(File f){
         ArrayList<File> allFiles = new ArrayList<>();
-//        allFiles.add(f);                                   // оставить, если необходимо также добавлять имена директорий.
         for (File file : f.listFiles()){
             if (file.isDirectory()){
                 allFiles.addAll(getAllFiles(file));
